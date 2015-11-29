@@ -25,7 +25,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#" style="margin-left:0px">Ez</a>
+      <a class="navbar-brand" href="main.php" style="margin-left:0px">Ez</a>
      <!--  <?php 
       echo $error5.$error6.$error7.$error8.$error9;
       ?> -->
