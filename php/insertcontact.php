@@ -14,6 +14,7 @@
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/bootstrap.css" rel="stylesheet">
     <link href='../css/style.css' rel='stylesheet'>
+   <!-- <link href="../css/jumbotron-narrow.css" rel="stylesheet">-->
 
     
   </head>
@@ -51,8 +52,8 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="index-navbar" style="background-color:pink">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Features <span class="sr-only">(current)</span></a></li>
-        <li><a href="contact.php">Contact </a></li>
+        <li ><a href="#">Features <span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="contact.php">Contact <span class="sr-only">(current)</span></a></li>
         <!-- <?php echo $_SESSION['login_user'];?> -->
       </ul>
       <?php if(isset($login_email)){?><ul class="nav navbar-nav navbar-right"><li><a href="#" class="navbar-link"><?php echo $login_fname .' '. $login_lname;?></a></li><?php }?>
@@ -71,9 +72,69 @@
       </ul>
       </div>
       </div>
-      </nav>
+      <center>
+      <STRONG><h3>Add New Contact</h3></STRONG>
+      </center>
+      <hr>
+      <br/>
+   <div class="container-fluid">
+    <table cellspacing="6" >
+    <?php
+      
+           if (isset($_POST['add'])) { 
+
+          $con = mysql_connect("localhost","root","");
+                mysql_select_db("contacts", $con);
+                
+          $user=$_POST['user'];
+          $name=$_POST['name'];
+          $phone=$_POST['phone'];
+          $phonetype=$_POST['phonetype'];
+          $address=$_POST['address'];
+          $birthday=$_POST['birthday'];
+          $company=$_POST['company'];
+          $note=$_POST['note'];
+
+          $query ="insert into info(user,name,phone,phonetype,address,birthday,company,note)values
+          ('$user','$name','$phone','$phonetype','$address','$birthday','$company','$note')";
+          if(mysql_query($query)){
+              echo "<font color='red'> Added Successfuly </font> | <a href='#'>Contact List</a>";
+          }
+          else{
+              echo "Fail";
+          }
+            
+      }
+    ?>
+    <form class="form-signin" method="POST" action="insertcontact.php">
+      
+       <input type="text" class="form-control" name="user" value="<?php echo $login_fname .' '. $login_lname;?>"readonly></td>
+      </br>
+      <input type="text" class="form-control" name="name" placeholder="Name"required autofocus></td>
+      </br>
+      <input type="text" class="form-control" name="phone"placeholder="Phone Number"required></td>
+      </br>
+      <input type="text" class="form-control" name="phonetype"placeholder="Phone Type"required></td>
+      </br>
+      <input type="text" class="form-control" name="address"placeholder="Address"required></td>
+      </br>
+      <input type="date" class="form-control" name="birthday"placeholder="Birthday"required></td>
+      </br>
+       <input type="text" class="form-control" name="company"placeholder="Company Detail"></td>
+      </br>
+       <input type="text" class="form-control" name="note"placeholder="Additional Note"></td>
+      </br>
+
+      <button name="add" type="submit"class="btn btn-lg btn-primary btn-block" >Add</button></td>
+    
+
+    </form>
+    </table>
     </div>
 
+      </nav>
+    </div>
+   
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/app.js"></script>

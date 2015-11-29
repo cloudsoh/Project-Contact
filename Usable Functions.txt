@@ -1,7 +1,7 @@
 Usable Functions
 ________________
 1. Modal (When Emailing)
-2. Choose Pictures from example as profile pictures ( Profile pictures )
+2. Dropdown menu (Navigation Bar)
 3. Carousel at Features(Introducing shits via screenshots & captions)
 4. sideNavBar( Tooltip )
 5. Badges(Messages numbers)
@@ -9,8 +9,6 @@ ________________
 7. Jumbotron ( main )
 8. Contacts ( blog comment )
 9. Validation states(form)
-10. Chat at left side, with status beside[online,offline]or[messages numbers]or[last online], sorted by most interaction(message,profile)
-11. Notification when people add you to contact list, msg u, comment, post
 
 Home Features Login Register 
 Main Friends Features Profile Settings 

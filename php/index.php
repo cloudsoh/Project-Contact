@@ -118,11 +118,11 @@
         <input type="file" id="exampleInputFile"> -->
         <p class="help-block">Example block-level help text here.</p>
       </div>
-      <!-- <div class="checkbox">
+      <div class="checkbox">
         <label>
           <input type="checkbox"> Remember me
         </label>
-      </div> -->
+      </div>
       <button type="submit" name="register" class="btn btn-default">Register</button>
       <?php if(isset($success)){echo  $success; }?>
     </form>
