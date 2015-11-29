@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Ez contact</title>
+    <title><?php echo $login_fname .' '. $login_lname;?><?php ?></title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../css/font-awesome.min.css" rel="stylesheet">
@@ -14,12 +14,8 @@
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/bootstrap.css" rel="stylesheet">
     <link href='../css/style.css' rel='stylesheet'>
-
-    
   </head>
   <body>
-    
-
     <div class="menu">
       <!-- Menu icon -->
       <div class="icon-close">
@@ -52,7 +48,6 @@
     <div class="collapse navbar-collapse" id="index-navbar" style="background-color:pink">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Features <span class="sr-only">(current)</span></a></li>
-        <li><a href="contact.php">Contact </a></li>
         <!-- <?php echo $_SESSION['login_user'];?> -->
       </ul>
       <?php if(isset($login_email)){?><ul class="nav navbar-nav navbar-right"><li><a href="profile.php?id=<?php echo $login_email;?>" class="navbar-link"><?php echo $login_fname .' '. $login_lname;?></a></li><?php }?>
