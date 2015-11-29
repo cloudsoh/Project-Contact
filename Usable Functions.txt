@@ -8,7 +8,7 @@ ________________
 6. Profile details (Progresssion %)
 7. Jumbotron ( main )
 8. Contacts ( blog comment )
-9. 
+9. Validation states(form)
 
 Home Features Login Register 
 Main Friends Features Profile Settings 

@@ -1,0 +1,30 @@
+header h1 img{
+  width:80px;
+  margin-bottom: 30px;
+}
+header h1{
+  margin:0px;
+}
+.jumbotron {
+  background-image:url('../images/1serah.jpg');
+  height: 500px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.jumbotron .container {
+  position: relative;
+  top:100px;
+}
+
+.jumbotron h1 {
+  color: #fff;
+  font-size: 48px;  
+  font-family: 'Shift', sans-serif;
+  font-weight: bold;
+}
+
+.jumbotron p {
+  font-size: 20px;
+  color: #fff;
+}
