@@ -40,7 +40,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand icon-menu" href="#">Chat</a>
-      <a class="navbar-brand" href="#" style="margin-left:0px">Ez Home</a>
+      <a class="navbar-brand" href="main.php" style="margin-left:0px">Ez Home</a>
 
     </div>
 
