@@ -1,3 +1,6 @@
+<?php 
+  include('login.php');
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,16 +32,16 @@
       <ul class="nav navbar-nav">
         <li><a href="#">Features</a></li>
       </ul>
-      <form class="navbar-form navbar-right" role="search">
+      <form class="navbar-form navbar-right" role="login" method="post" action="#">
         <div class="form-group">
           <label class="sr-only" for="loginemail">Email</label>
-          <input type="email" class="form-control" placeholder="Email">
+          <input type="email" name="lEmail" class="form-control" placeholder="Email">
         </div>
         <div class="form-group">
           <label class="sr-only" for="loginpw">Password</label>
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" name="lpw" class="form-control" placeholder="Password">
         </div>
-        <button type="submit" class="btn btn-default">Login</button>
+        <button type="submit" name="login"class="btn btn-default">Login</button>
       </form>
 
       <!-- <ul class="nav navbar-nav navbar-right">
@@ -79,23 +82,26 @@
     </div>
     <div class="col-sm-4 col-xs-12">
     <h1>Register</h1>
-    <br>
-    <form>
+    <form method="post" action="#">
       <div class="form-group">
         <label for="labelfname">First Name</label>
-        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="John">
+        <input type="text" name="rFname" class="form-control" id="exampleInputEmail1" placeholder="John" value="<?php if(isset($_SESSION['entered_fname'])){echo $_SESSION['entered_fname'];}?>"><?php if(isset($error2)){ echo $error2;}?>
       </div>
       <div class="form-group">
         <label for="labellname">Last Name</label>
-        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Cena">
+        <input type="text" name="rLname"class="form-control" id="exampleInputEmail1" placeholder="Cena"value="<?php if(isset($_SESSION['entered_lname'])){echo $_SESSION['entered_lname'];}?>"><?php if(isset($error1)){ echo $error1;}?>
       </div>
       <div class="form-group">
         <label for="labelemail">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="johncena@gmail.com">
+        <input type="email" name="rEmail" class="form-control" id="exampleInputEmail1" placeholder="johncena@gmail.com" value="<?php if(isset($_SESSION['entered_email'])){echo $_SESSION['entered_email'];}?>"><?php if(isset($error3)){ echo $error3;}?>
       </div>
       <div class="form-group">
         <label for="labelpw">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="********">
+        <input type="password" name="rpw1" class="form-control" id="exampleInputPassword1" placeholder="********"><?php if(isset($error4)){ echo $error4;}?>
+      </div>
+      <div class="form-group">
+        <label for="labelpw">Confirm Password</label>
+        <input type="password" name="rpw2" class="form-control" id="exampleInputPassword1" placeholder="********">
       </div>
       <div class="form-group">
         <!-- <label for="exampleInputFile">File input</label>
@@ -107,7 +113,8 @@
           <input type="checkbox"> Remember me
         </label>
       </div>
-      <button type="submit" class="btn btn-default">Submit</button>
+      <button type="submit" name="register" class="btn btn-default">Register</button>
+      <?php if(isset($success)){echo  $success; }?>
     </form>
     </div>
   </div>
