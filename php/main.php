@@ -52,9 +52,9 @@
     <div class="collapse navbar-collapse" id="index-navbar" style="background-color:pink">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Features <span class="sr-only">(current)</span></a></li>
-        
+        <!-- <?php echo $_SESSION['login_user'];?> -->
       </ul>
-      <ul class="nav navbar-nav navbar-right"><li><a href="#" class="navbar-link">Soh Jun Fu</a></li>
+      <?php if(isset($login_email)){?><ul class="nav navbar-nav navbar-right"><li><a href="#" class="navbar-link"><?php echo $login_fname .' '. $login_lname;?></a></li><?php }?>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -64,7 +64,7 @@
             <li role="separator" class="divider"></li>
             <li><a href="#">Customer Support</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Log out</a></li>
+            <li><a href="logout.php">Log out</a></li>
           </ul>
         </li>
       </ul>

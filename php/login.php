@@ -1,19 +1,22 @@
 <?php
+session_start();
 if (isset($_POST['login'])) {
-if (empty($_POST['myusername']) || empty($_POST['mypassword'])) {//log in
+if (empty($_POST['lEmail']) || empty($_POST['lpw'])) {//log in
 $headererror = "Username or Password is invalid";
 $_SESSION['headererror']=$headererror;
+$error6="email or pw empty";
 }
 else
 {
 // Define $username and $password
-$myusername=$_POST['lemail'];
+$myusername=$_POST['lEmail'];
 $mypassword=$_POST['lpw'];
 // Establishing Connection with Server by passing server_name, user_id and password as a parameter
 $connection = mysql_connect("localhost", "root", "");
 if(! $connection)
 {
     die('Connection Failed'.mysql_error());
+    $error7 = "connection failed";
 }
 // To protect MySQL injection for Security purpose
 $myusername = stripslashes($myusername);
@@ -26,8 +29,10 @@ $db = mysql_select_db("contacts", $connection);
 $query = mysql_query("select * from users where email='$myusername' AND password='$mypassword'", $connection);
 if($query)
   $total = mysql_num_rows($query);
-else
+else{
   die("something failed");
+  $error5='query failed';
+}
 
 // $protocol = $_SERVER['HTTPS'] ? "https" : "http";
 // $url = $protocol.'://'.$_SERVER['HTTP_HOST'];
@@ -36,7 +41,7 @@ else
 $_SESSION['login_user']=$myusername;
 
 if ($total == 1) {
-	// Credentials match so we create session variables
+  // Credentials match so we create session variables
     $row = mysql_fetch_assoc($query);
     // $_SESSION['users_id'] = $row['users_id'];
     $_SESSION['users_email'] = $row['email'];
@@ -45,19 +50,20 @@ if ($total == 1) {
     $_SESSION['users_lname'] = $row['lname'];
     $_SESSION['headererror'] = NULL;
     // Initializing Session
-	$url = '#';    
+  $url = 'main.php';    
 }
 else{
     $headererror = "Username or Password is invalid";
     $_SESSION['headererror']=$headererror;
+    $error8="username or pw wrong";
     // If not, then redirect the user the login page with an error
-    $url .= '#';
+    $url .= 'index.php';
 }
 header("Location: $url");
 // $currentuser=$_SESSION['users_id'];
 // $query4="SELECT * FROM books WHERE lenderID=$currentuser";//save book lent to session
 //     if(isset($query4)){
-//     	echo $query4;
+//      echo $query4;
 //      $result4=$db->query($query4); // run query
 //     } //fetch array = mysql_fetch_assoc
 // header("Location: $url");
@@ -66,7 +72,8 @@ mysql_close($connection);
 exit;
 // Closing Connection
 }
-}
+}else{$_SESSION['error9']="no press login";}
+if(isset($_POST['login'])){$_SESSION['qqq']='qqq';}
 $db = new mysqli("localhost", "root", "", "contacts");// connect database
 if(isset($_POST['register'])){
     $_SESSION['entered_email']=$_POST['rEmail'];

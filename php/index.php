@@ -1,6 +1,7 @@
 <?php 
-  include('login.php');
+  include("login.php");
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,6 +26,9 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="#" style="margin-left:0px">Ez</a>
+     <!--  <?php 
+      echo $error5.$error6.$error7.$error8.$error9;
+      ?> -->
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -32,8 +36,14 @@
       <ul class="nav navbar-nav">
         <li><a href="#">Features</a></li>
       </ul>
-      <form class="navbar-form navbar-right" role="login" method="post" action="#">
+      <form class="navbar-form navbar-right" method="post" action="#">
         <div class="form-group">
+        <?php if(isset($_SESSION['headererror'])){ $headererror=$_SESSION['headererror'];
+            echo $_SESSION['headererror'];
+            echo "<script type='text/javascript'>alert('$headererror');</script>";
+            // "<script type='text/javascript'>alert('You did not select a book.');</script>";
+            $_SESSION['headererror']=null;}
+            ?>
           <label class="sr-only" for="loginemail">Email</label>
           <input type="email" name="lEmail" class="form-control" placeholder="Email">
         </div>
