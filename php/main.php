@@ -55,7 +55,7 @@
         <li><a href="contact.php">Contact </a></li>
         <!-- <?php echo $_SESSION['login_user'];?> -->
       </ul>
-      <?php if(isset($login_email)){?><ul class="nav navbar-nav navbar-right"><li><a href="profile.php?id=<?php echo $login_email;?>" class="navbar-link"><?php echo $login_fname .' '. $login_lname;?></a></li><?php }?>
+      <?php if(isset($login_email)){?><ul class="nav navbar-nav navbar-right"><li><a href="profile.php?a=<?php echo $login_id;?>" class="navbar-link"><?php echo $login_fname .' '. $login_lname;?></a></li><?php }?>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
           <ul class="dropdown-menu">
