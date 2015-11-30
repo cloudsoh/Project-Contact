@@ -52,7 +52,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="index-navbar" style="background-color:pink">
       <ul class="nav navbar-nav">
-        <li ><a href="#">Features <span class="sr-only">(current)</span></a></li>
+        <li ><a href="main.php">Features </a></li>
         <li class="active"><a href="contact.php">Contact <span class="sr-only">(current)</span></a></li>
         <!-- <?php echo $_SESSION['login_user'];?> -->
       </ul>

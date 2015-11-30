@@ -52,6 +52,7 @@
     <div class="collapse navbar-collapse" id="index-navbar" style="background-color:pink">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Features <span class="sr-only">(current)</span></a></li>
+         <li ><a href="contact.php">Contacts</a></li>
         <!-- <?php echo $_SESSION['login_user'];?> -->
       </ul>
       <?php if(isset($login_email)){?><ul class="nav navbar-nav navbar-right"><li><a href="profile.php?id=<?php echo $login_email;?>" class="navbar-link"><?php echo $login_fname .' '. $login_lname;?></a></li><?php }?>
