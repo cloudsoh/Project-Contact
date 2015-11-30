@@ -43,7 +43,7 @@ $_SESSION['login_user']=$myusername;
 if ($total == 1) {
   // Credentials match so we create session variables
     $row = mysql_fetch_assoc($query);
-    // $_SESSION['users_id'] = $row['users_id'];
+    $_SESSION['users_id'] = $row['userid'];
     $_SESSION['users_email'] = $row['email'];
     // $_SESSION['users_role'] = $row['users_role'];
     $_SESSION['users_fname'] = $row['fname'];

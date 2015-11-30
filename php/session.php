@@ -9,6 +9,7 @@ $user_check=$_SESSION['login_user'];
 // SQL Query To Fetch Complete Information Of User
 $ses_sql=mysql_query("select * from users where email='$user_check'", $connection);
 $row = mysql_fetch_assoc($ses_sql);
+$login_id=$row['userid'];
 $login_email =$row['email'];
 $login_fname=$row['fname'];
 $login_lname=$row['lname'];
