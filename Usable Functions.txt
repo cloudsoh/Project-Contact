@@ -13,4 +13,8 @@ ________________
 11. Notification when people add you to contact list, msg u, comment, post
 
 Home Features Login Register 
+<<<<<<< HEAD
 Main Friends Features Profile Settings 
+=======
+Main Friends Features Profile Settings
+>>>>>>> origin/master

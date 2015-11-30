@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Ez contact</title>
+    <title><?php echo $login_fname .' '. $login_lname;?><?php ?></title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../css/font-awesome.min.css" rel="stylesheet">
@@ -14,12 +14,8 @@
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/bootstrap.css" rel="stylesheet">
     <link href='../css/style.css' rel='stylesheet'>
-
-    
   </head>
   <body>
-    
-
     <div class="menu">
       <!-- Menu icon -->
       <div class="icon-close">

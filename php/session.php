@@ -20,7 +20,8 @@ if(!isset($login_email)){
 mysql_close($connection); // Closing main_loginn
 header('Location: index.php'); // Redirecting To Home cairo_pattern_get_extend(pattern)
 }
-if(isset($_SESSION['logout'])){
+if(isset($_GET['id'])){
+	$currentuser=$_GET['id'];
 	
 }
 ?>
