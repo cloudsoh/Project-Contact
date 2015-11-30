@@ -73,30 +73,52 @@
       </div>
       </div>
       <center>
+
       <STRONG><h3>Add New Contact</h3></STRONG>
+       | <a href='list.php'>My Contact List</a> | <a href='edit.php'>Edit My Contact</a> |
+       
       </center>
+         
+        <br />
       <hr>
       <br/>
-   <div class="container-fluid">
+   <div class="container">
     <table cellspacing="6" >
     <form class="form-signin" method="POST" action="insertcontact.php">
       
     
-       <input type="text" class="form-control" name="user" value="<?php echo $login_fname .' '. $login_lname;?>"readonly></td>
+       <input type="text" class="form-control" name="user" value="<?php echo $_SESSION['login_user'];?>"readonly></td>
       </br>
       <input type="text" class="form-control" name="name" placeholder="Name"required autofocus></td>
       </br>
       <input type="text" class="form-control" name="phone"placeholder="Phone Number"required></td>
       </br>
-      <input type="text" class="form-control" name="phonetype"placeholder="Phone Type"required></td>
-      </br>
+      
+      
+
+      <input list="phonetype" class="form-control" name="phonetype" placeholder="Choose Phone Type or Type Here"required><br>
+
+  <datalist id="phonetype">
+    <option value="Mobile">
+    <option value="Home">
+    <option value="Work">
+    <option value="School">
+    <option value="Private">
+
+  </datalist>
+
       <input type="text" class="form-control" name="address"placeholder="Address"required></td>
       </br>
-      <input type="date" class="form-control" name="birthday"placeholder="Birthday"required></td>
+      Birthday<input type="date" class="form-control" name="birthday"placeholder="Birthday"required></td>
+      </br>
+      <details>
+      <summary>Write more details </summary>
       </br>
        <input type="text" class="form-control" name="company"placeholder="Company Detail"></td>
       </br>
        <input type="text" class="form-control" name="note"placeholder="Additional Note"></td>
+      </br>
+    </details>
       </br>
 
       <button name="add" type="submit" class="btn btn-lg btn-primary btn-block" >Add</button></td>

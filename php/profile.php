@@ -92,6 +92,8 @@
       </div>
       </nav>
       <div class="row">
+      <div class="col-md-1">
+      </div>
       <div class="col-sm-12 col-md-3">
         <div class="thumbnail">
           <img class="img-responsive" src="../images/android.png" alt="Profile Pictures" style="height:200px">
