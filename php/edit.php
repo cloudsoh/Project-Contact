@@ -56,7 +56,8 @@
         <li class="active"><a href="contact.php">Contact <span class="sr-only">(current)</span></a></li>
         <!-- <?php echo $_SESSION['login_user'];?> -->
       </ul>
-       <?php if(isset($login_email)){?><ul class="nav navbar-nav navbar-right"><li><a href="profile.php?a=<?php echo $login_id;?>" class="navbar-link"><?php echo $login_fname .' '. $login_lname;?></a></li><?php }?>
+         <?php if(isset($login_email)){?><ul class="nav navbar-nav navbar-right"><li><a href="profile.php?a=<?php echo $login_id;?>" class="navbar-link"><?php echo $login_fname .' '. $login_lname;?></a></li><?php }?>
+
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -72,77 +73,68 @@
       </ul>
       </div>
       </div>
+      <div class="container-fluid">
       <center>
-      <STRONG><h3>Add New Contact</h3></STRONG>
+
+      <STRONG><h3>Edit Contact</h3></STRONG>
+       | <a href='contact.php'>My Contacts</a> | <a href='add.php'>Add Contact</a> |
+       
       </center>
+         
+        <br />
       <hr>
       <br/>
-   <div class="container">
-    <table cellspacing="6" >
-    <?php
+ 
+  <?php
+      $con = mysql_connect("localhost","root","");
+           mysql_select_db("contacts", $con);
+
       
-           if (isset($_POST['add'])) { 
-
-          $con = mysql_connect("localhost","root","");
-                mysql_select_db("contacts", $con);
-                
-          $user=$_POST['user'];
-          $name=$_POST['name'];
-          $phone=$_POST['phone'];
-          $phonetype=$_POST['phonetype'];
-          $address=$_POST['address'];
-          $birthday=$_POST['birthday'];
-          $company=$_POST['company'];
-          $note=$_POST['note'];
-
-          $query ="insert into info(user,name,phone,phonetype,address,birthday,company,note)values
-          ('$user','$name','$phone','$phonetype','$address','$birthday','$company','$note')";
-          if(mysql_query($query)){
-              echo "<font color='red'> Added Successfuly </font> | <a href='contact.php'>Contact List</a>";
-          }
-          else{
-              echo "Fail";
-          }
-            
-      }
-    ?>
-    <form class="form-signin" method="POST" action="insertcontact.php">
-      
-       <input type="text" class="form-control" name="user" value="<?php echo $_SESSION['login_user'];?>"readonly></td>
-      </br>
-      <input type="text" class="form-control" name="name" placeholder="Name"required autofocus></td>
-      </br>
-      <input type="text" class="form-control" name="phone"placeholder="Phone Number"required></td>
-      </br>
-
-      <input list="phonetype" class="form-control" name="phonetype" placeholder="Choose Phone Type or Type Here"required><br>
-
-  <datalist id="phonetype">
-    <option value="Mobile">
-    <option value="Home">
-    <option value="Work">
-    <option value="School">
-    <option value="Private">
-
-  </datalist>
-  
-      <input type="text" class="form-control" name="address"placeholder="Address"required></td>
-      </br>
-      <input type="date" class="form-control" name="birthday"placeholder="Birthday"required></td>
-      </br>
-       <input type="text" class="form-control" name="company"placeholder="Company Detail"></td>
-      </br>
-       <input type="text" class="form-control" name="note"placeholder="Additional Note"></td>
-      </br>
-
-      <button name="add" type="submit"class="btn btn-lg btn-primary btn-block" >Add</button></td>
+           
+         
+      echo "<table border='1' class='table table-responsive table-hover' >";
+      $e = $_SESSION['login_user'];
+      $locate =mysql_query("select * from info where user='$e'");
     
+      echo "<tr>";
+      echo "<thread>";
+      echo "<th>Name</th>";
+      echo "<th>Phone Number</th>";
+      echo "<th>Phone Type</th>";
+      echo "<th>Address</th>";
+      echo "<th>Birthday</th>";
+       echo "<th>Company</th>";
+       echo "<th>Note</th>";
+       echo "<th colspan='2'><center>Action</th>";
+       echo"</thread>";
+      echo "</tr>";
 
-    </form>
-    </table>
-    </div>
+      while($rows=mysql_fetch_array($locate)){
+        echo "<tr>";
+        
+        echo "<td>".$rows['name']."</td>";
+        echo "<td>".$rows['phone']."</td>";
+        echo "<td>".$rows['phonetype']."</td>";
+        echo "<td>".$rows['address']."</td>";
+        echo "<td>".$rows['birthday']."</td>";
+        echo "<td>".$rows['company']."</td>";
+        echo "<td>".$rows['note']."</td>";
+        //echo "<td><a class='btn btn-primary btn-xs' href='contact.php'title='Edit'><span class='glyphicon glyphicon-edit'></span><span class='hidden-xs'> Edit</span></a></td>";
+        echo "<td title=Edit><a href=\"editform.php?id=$rows[info_id]\"><center>Edit</a></td>";
+        echo "<td title=Remove><a href='deletecontact.php?id=".$rows['info_id']."'><center>Remove</a></td>";
+       
+
+         
+        }
+        echo "</tr>";
+      
+      echo "</table>";
+      
+        
+    ?>
 
       </nav>
+    </div>
     </div>
    
     <script src="../js/jquery.min.js"></script>

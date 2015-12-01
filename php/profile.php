@@ -115,7 +115,7 @@
       
       <div class="button-group pull-right">
         <p class="counter">140</p>
-        <button  type="submit" id="post" name="postbtn" class="btn btn-primary">Post</button>
+        <button type="submit" id="post" name="postbtn" class="btn btn-primary">Post</button>
        
       </div>
       </form>

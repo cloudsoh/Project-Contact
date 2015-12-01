@@ -73,6 +73,9 @@
       </div>
       </nav>
     </div>
+    <div class="btn-group-vertical" role="group" aria-label="...">
+  ...
+</div>
 
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>

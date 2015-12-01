@@ -56,7 +56,8 @@
         <li class="active"><a href="contact.php">Contact <span class="sr-only">(current)</span></a></li>
         <!-- <?php echo $_SESSION['login_user'];?> -->
       </ul>
-      <?php if(isset($login_email)){?><ul class="nav navbar-nav navbar-right"><li><a href="#" class="navbar-link"><?php echo $login_fname .' '. $login_lname;?></a></li><?php }?>
+         <?php if(isset($login_email)){?><ul class="nav navbar-nav navbar-right"><li><a href="profile.php?a=<?php echo $login_id;?>" class="navbar-link"><?php echo $login_fname .' '. $login_lname;?></a></li><?php }?>
+
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -72,63 +73,63 @@
       </ul>
       </div>
       </div>
+      <div class="container-fluid">
       <center>
 
-      <STRONG><h3>Add New Contact</h3></STRONG>
-       | <a href='list.php'>My Contact List</a> | <a href='edit.php'>Edit My Contact</a> |
+      <STRONG><h3>My Contact</h3></STRONG>
+       | <a href='add.php'>Add Contacts</a> | <a href='edit.php'>Edit My Contact</a> |
        
       </center>
          
         <br />
       <hr>
       <br/>
-   <div class="container">
-    <table cellspacing="6" >
-    <form class="form-signin" method="POST" action="insertcontact.php">
+ 
+  <?php
+      $con = mysql_connect("localhost","root","");
+           mysql_select_db("contacts", $con);
+
       
+           
+         
+      echo "<table border='1' class='table table-striped' >";
+      $e = $_SESSION['login_user'];
+      $locate =mysql_query("select * from info where user='$e'");
     
-       <input type="text" class="form-control" name="user" value="<?php echo $_SESSION['login_user'];?>"readonly></td>
-      </br>
-      <input type="text" class="form-control" name="name" placeholder="Name"required autofocus></td>
-      </br>
-      <input type="text" class="form-control" name="phone"placeholder="Phone Number"required></td>
-      </br>
+      echo "<tr>";
+      echo "<thread>";
+      echo "<th>Name</th>";
+      echo "<th>Phone Number</th>";
+      echo "<th>Phone Type</th>";
+      echo "<th>Address</th>";
+      echo "<th>Birthday</th>";
+       echo "<th>Company</th>";
+       echo "<th>Note</th>";
+       echo"</thread>";
+      echo "</tr>";
+
+      while($rows=mysql_fetch_array($locate)){
+        echo "<tr>";
+        
+        echo "<td>".$rows['name']."</td>";
+        echo "<td>".$rows['phone']."</td>";
+        echo "<td>".$rows['phonetype']."</td>";
+        echo "<td>".$rows['address']."</td>";
+        echo "<td>".$rows['birthday']."</td>";
+        echo "<td>".$rows['company']."</td>";
+        echo "<td>".$rows['note']."</td>";
+
+         
+        }
+        echo "</tr>";
       
+      echo "</table>";
       
-
-      <input list="phonetype" class="form-control" name="phonetype" placeholder="Choose Phone Type or Type Here"required><br>
-
-  <datalist id="phonetype">
-    <option value="Mobile">
-    <option value="Home">
-    <option value="Work">
-    <option value="School">
-    <option value="Private">
-
-  </datalist>
-
-      <input type="text" class="form-control" name="address"placeholder="Address"required></td>
-      </br>
-      Birthday<input type="date" class="form-control" name="birthday"placeholder="Birthday"required></td>
-      </br>
-      <details>
-      <summary>Write more details </summary>
-      </br>
-       <input type="text" class="form-control" name="company"placeholder="Company Detail"></td>
-      </br>
-       <input type="text" class="form-control" name="note"placeholder="Additional Note"></td>
-      </br>
-    </details>
-      </br>
-
-      <button name="add" type="submit" class="btn btn-lg btn-primary btn-block" >Add</button></td>
-    
-
-    </form>
-    </table>
-    </div>
+        
+    ?>
 
       </nav>
+    </div>
     </div>
    
     <script src="../js/jquery.min.js"></script>

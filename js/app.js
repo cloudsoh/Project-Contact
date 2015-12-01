@@ -1,5 +1,5 @@
 var main = function(){
-    $('.btn').attr('disabled',true);
+    $('#post').attr('disabled',true);
     $('.icon-menu').click(function(){
         $('.menu').animate({left:'0px'},200);
         $('body').animate({left:'285px'},200);
@@ -8,10 +8,11 @@ var main = function(){
         $('.menu').animate({left:'-285px'},200);
         $('body').animate({left:'0px'},200);
     });
-    $('.dropdown-toggle').click(function(){
-        $('.dropdown-menu').toggle();
-    });
-    $('.btn').click(function(){
+    // $('.dropdown-toggle').click(function(){
+    //     $('.dropdown-menu').toggle();
+    // });
+
+    $('#post').click(function(){
         var post = $('.status-box').val();
         // <?php 
         // date_default_timezone_set("Asia/Singapore");//set timezone
@@ -23,22 +24,22 @@ var main = function(){
         //    + post;
         // // post =  name + ":" + post;
         // $('<li>').html(name).prependTo('.posts');
-        $('.status-box').val('');
+        // $('.status-box').val('');
         $('.counter').text('140');
-        $('.btn').addClass('disabled');
+        // $('#post').attr('disabled',true);
     });
     $('.status-box').keyup(function(){//words left counter
         var postLength = $(this).val().length;
         var charactersleft = 140 - postLength;
         $('.counter').text(charactersleft);
         if(charactersleft<0){
-            $('.btn').attr('disabled',true);
+            $('#post').attr('disabled',true);
         }else if(charactersleft==140){
-           $('.btn').attr('disabled',true);
+           $('#post').attr('disabled',true);
         }else{
-            $('.btn').attr('disabled',false);   
+            $('#post').attr('disabled',false);   
         }
     });
-    // $('.btn').disabled="disabled";
+    // $('#post').disabled="disabled";
 };
 $(document).ready(main);

@@ -14,6 +14,7 @@
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/bootstrap.css" rel="stylesheet">
     <link href='../css/style.css' rel='stylesheet'>
+    
    <!-- <link href="../css/jumbotron-narrow.css" rel="stylesheet">-->
 
     
@@ -73,49 +74,55 @@
       </div>
       </div>
       <center>
-      <STRONG><h3>Add New Contact</h3></STRONG>
+<?php
+    $con = mysql_connect("localhost","root","");
+           mysql_select_db("contacts", $con);
+
+            $id = $_GET['id'];
+    $query = "SELECT * FROM info where info_id=$id";
+  //initializing result as a query
+  $result = mysql_query($query);
+  //display records from records table 
+  while($rows = mysql_fetch_array($result))
+  { 
+          $user=$rows['user'];
+          $name=$rows['name'];
+          $phone=$rows['phone'];
+          $phonetype=$rows['phonetype'];
+          $address=$rows['address'];
+          $birthday=$rows['birthday'];
+          $company=$rows['company'];
+          $note=$rows['note'];
+   
+    
+  } 
+        
+  
+    ?>
+      <STRONG><h3>Edit Contact</h3></STRONG>
+      | <a href='contact.php'>My Contact</a> | <a href='add.php'>Add Contact</a> |
+       
+       
       </center>
+         
+        <br />
       <hr>
       <br/>
    <div class="container">
     <table cellspacing="6" >
-    <?php
+    <form class="form-signin" method="POST" action="updatecontact.php?id=<?php echo $id?>">
       
-           if (isset($_POST['add'])) { 
-
-          $con = mysql_connect("localhost","root","");
-                mysql_select_db("contacts", $con);
-                
-          $user=$_POST['user'];
-          $name=$_POST['name'];
-          $phone=$_POST['phone'];
-          $phonetype=$_POST['phonetype'];
-          $address=$_POST['address'];
-          $birthday=$_POST['birthday'];
-          $company=$_POST['company'];
-          $note=$_POST['note'];
-
-          $query ="insert into info(user,name,phone,phonetype,address,birthday,company,note)values
-          ('$user','$name','$phone','$phonetype','$address','$birthday','$company','$note')";
-          if(mysql_query($query)){
-              echo "<font color='red'> Added Successfuly </font> | <a href='contact.php'>Contact List</a>";
-          }
-          else{
-              echo "Fail";
-          }
-            
-      }
-    ?>
-    <form class="form-signin" method="POST" action="insertcontact.php">
-      
+    
        <input type="text" class="form-control" name="user" value="<?php echo $_SESSION['login_user'];?>"readonly></td>
       </br>
-      <input type="text" class="form-control" name="name" placeholder="Name"required autofocus></td>
+      <input type="text" class="form-control" value='<?php echo $name?>'name="name" required autofocus></td>
       </br>
-      <input type="text" class="form-control" name="phone"placeholder="Phone Number"required></td>
+      <input type="text" class="form-control" value='<?php echo $phone?>'name="phone"required></td>
       </br>
+      
+      
 
-      <input list="phonetype" class="form-control" name="phonetype" placeholder="Choose Phone Type or Type Here"required><br>
+      <input list="phonetype" class="form-control"value='<?php echo $phonetype?>' name="phonetype" required><br>
 
   <datalist id="phonetype">
     <option value="Mobile">
@@ -125,17 +132,23 @@
     <option value="Private">
 
   </datalist>
-  
-      <input type="text" class="form-control" name="address"placeholder="Address"required></td>
+
+      <input type="text" class="form-control"value='<?php echo $address?>' name="address"required></td>
       </br>
-      <input type="date" class="form-control" name="birthday"placeholder="Birthday"required></td>
-      </br>
-       <input type="text" class="form-control" name="company"placeholder="Company Detail"></td>
-      </br>
-       <input type="text" class="form-control" name="note"placeholder="Additional Note"></td>
+        Birthday<input type="date" class="form-control" value='<?php echo $birthday?>'name="birthday"required></td>
       </br>
 
-      <button name="add" type="submit"class="btn btn-lg btn-primary btn-block" >Add</button></td>
+      <details>
+      <summary>Write more details </summary>
+      </br>
+       <input type="text" class="form-control" value='<?php echo $company?>'name="company"></td>
+      </br>
+       <input type="text" class="form-control"value='<?php echo $note?>' name="note"></td>
+      </br>
+    </details>
+      </br>
+
+      <button name="edit" type="submit" class="btn btn-lg btn-primary btn-block" >Edit</button></td>
     
 
     </form>
