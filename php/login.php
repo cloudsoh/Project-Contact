@@ -134,8 +134,8 @@ if(isset($_POST['register'])){
               $update2=$db->query($update1);
               $success="You have successfully register!";
               }}
-        else{ $error3="Please enter your E-mail.";$success="error3";}
-      }else{ $error1="Please enter your last name.";$success="error1";}
-    }else{ $error2="Please enter your first name.";$success="error2";}
+        else{ $error3="Please enter your E-mail.";}
+      }else{ $error1="Please enter your last name.";}
+    }else{ $error2="Please enter your first name.";}
   }
 ?>

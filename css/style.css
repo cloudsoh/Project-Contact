@@ -106,3 +106,49 @@ body {
   word-wrap: break-word;
   min-height: 42px;
 }
+.profile-pic {
+      position: relative;
+      display: inline-block;
+    }
+.edit li{
+  background-color: initial;
+  border: initial;
+  padding-top: initial;
+  padding-left: initial;
+  padding-right: initial;
+  padding-bottom: initial;
+  margin-bottom: initial;
+  word-wrap: initial;
+  min-height: initial;
+}
+.profile-pic:hover .edit {
+  display: block;
+}
+.posts li{
+  position: relative;
+      /*display: inline-block;*/
+}
+.posts .edit {
+  padding-top: 7px; 
+  padding-right: 7px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  /*display: none;*/
+}
+.thumbnail .edit {
+  padding-top: 7px; 
+  padding-right: 7px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: none;
+}
+.posts .edit i{
+  display: none;
+}
+
+.edit a {
+  color: #000;
+  text-decoration: none;
+}

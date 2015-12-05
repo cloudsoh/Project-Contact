@@ -81,10 +81,10 @@
     <div class="jumbotron col-sm-6 col-xs-12">
       <div class="container">
       <h1>
-        Ez contact
+        Ez Social Contact
       </h1>
       <p>
-        #Best #Razer #Pink
+        #Best #Pink
       </p>
       </div>
     </div>
@@ -95,15 +95,15 @@
     <form method="post" action="#">
       <div class="form-group">
         <label for="labelfname">First Name</label>
-        <input type="text" name="rFname" class="form-control" id="exampleInputEmail1" placeholder="John" value="<?php if(isset($_SESSION['entered_fname'])){echo $_SESSION['entered_fname'];}?>"><?php if(isset($error2)){ echo $error2;}?>
+        <input type="text" name="rFname" class="form-control" id="exampleInputEmail1" placeholder="John" value="<?php if(isset($success)){echo "";}else if(isset($_SESSION['entered_fname'])){echo $_SESSION['entered_fname'];}?>"><?php if(isset($error2)){ echo $error2;}?>
       </div>
       <div class="form-group">
         <label for="labellname">Last Name</label>
-        <input type="text" name="rLname"class="form-control" id="exampleInputEmail1" placeholder="Cena"value="<?php if(isset($_SESSION['entered_lname'])){echo $_SESSION['entered_lname'];}?>"><?php if(isset($error1)){ echo $error1;}?>
+        <input type="text" name="rLname"class="form-control" id="exampleInputEmail1" placeholder="Cena"value="<?php if(isset($success)){echo "";}else if(isset($_SESSION['entered_lname'])){echo $_SESSION['entered_lname'];}?>"><?php if(isset($error1)){ echo $error1;}?>
       </div>
       <div class="form-group">
         <label for="labelemail">Email address</label>
-        <input type="email" name="rEmail" class="form-control" id="exampleInputEmail1" placeholder="johncena@gmail.com" value="<?php if(isset($_SESSION['entered_email'])){echo $_SESSION['entered_email'];}?>"><?php if(isset($error3)){ echo $error3;}?>
+        <input type="email" name="rEmail" class="form-control" id="exampleInputEmail1" placeholder="johncena@gmail.com" value="<?php if(isset($success)){echo "";}else if(isset($_SESSION['entered_email'])){echo $_SESSION['entered_email'];}?>"><?php if(isset($error3)){ echo $error3;}?>
       </div>
       <div class="form-group">
         <label for="labelpw">Password</label>

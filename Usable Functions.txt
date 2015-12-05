@@ -11,6 +11,8 @@ ________________
 9. Validation states(form)
 10. Chat at left side, with status beside[online,offline]or[messages numbers]or[last online], sorted by most interaction(message,profile)
 11. Notification when people add you to contact list, msg u, comment, post
+12. htaccess rewrite url (linux/apache)
+13. ajax use template
 
 Home Features Login Register 
 <<<<<<< HEAD

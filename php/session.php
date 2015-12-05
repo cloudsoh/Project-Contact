@@ -13,7 +13,7 @@ $login_id=$row['userid'];
 $login_email =$row['email'];
 $login_fname=$row['fname'];
 $login_lname=$row['lname'];
-
+$login_password=$row['password'];
 if(!isset($user_check)){
 header("location: index.php");
 }

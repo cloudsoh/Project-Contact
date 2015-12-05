@@ -1,10 +1,33 @@
 <?php 
   include("session.php");
+  // if(isset($_GET['a'])){//if clicked on somebody profile
+  //     $thisid=$_GET['a'];
+  //     $aquery="select * from users where userid='$thisid'";
+  //     $aquery=mysql_query($aquery, $connection);
+  //     $row1 = mysql_fetch_assoc($aquery);
+  //     $thisemail = $row1['email'];
+  //     $thisfname = $row1['fname'];
+  //     $thislname = $row1['lname'];
+  //     $thisdesc = $row1['description'];
+  // }
+  // $locationid=$_GET['a'];
+  // $db1 = new mysqli("localhost", "root", "", "contacts");
+  // if(isset($_POST['postbtn'])){
+  //     $newpost=$_POST['textbox'];
+  //     $userid=$_SESSION['users_id'];
+  //     date_default_timezone_set("Asia/Singapore");//set timezone
+  //     $time1=date("Y-m-d H:i:s");//get current time with this format
+  //     $time=$time1;
+  //     $content=$newpost;
+  //     $upposts="insert into posts (userid,locationid,time,content)values('$userid','$locationid','$time','$content')";
+  //     $insert_result=$db1->query($upposts);
+      
+  // }
 ?>
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Ez contact</title>
+    <title>Customer Support</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../css/font-awesome.min.css" rel="stylesheet">
@@ -14,13 +37,9 @@
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/bootstrap.css" rel="stylesheet">
     <link href='../css/style.css' rel='stylesheet'>
-   <!-- <link href="../css/jumbotron-narrow.css" rel="stylesheet">-->
 
-    
   </head>
   <body>
-    
-
     <!-- <div class="menu">
       
       <div class="icon-close">
@@ -33,7 +52,7 @@
       </ul>
     </div> -->
     <!-- Main body -->
-    <div class="jumbotron">
+    
       <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -52,12 +71,11 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="index-navbar" style="background-color:pink">
       <ul class="nav navbar-nav">
-        <!-- <li ><a href="main.php">Features </a></li> -->
-        <li class="active"><a href="contact.php">Contact <span class="sr-only">(current)</span></a></li>
+        <!-- <li class="active"><a href="#">Features <span class="sr-only">(current)</span></a></li> -->
         <!-- <?php echo $_SESSION['login_user'];?> -->
+        <li ><a href="contact.php">Contacts</a></li>
       </ul>
-         <?php if(isset($login_email)){?><ul class="nav navbar-nav navbar-right"><li><a href="profile.php?a=<?php echo $login_id;?>" class="navbar-link"><?php echo $login_fname .' '. $login_lname;?></a></li><?php }?>
-
+      <?php if(isset($login_email)){?><ul class="nav navbar-nav navbar-right"><li><a href="profile.php?a=<?php echo $login_id;?>" class="navbar-link"><?php echo $login_fname .' '. $login_lname;?></a></li><?php }?>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -73,72 +91,44 @@
       </ul>
       </div>
       </div>
-      <div class="container-fluid">
-      <center>
-
-      <STRONG><h3>Edit Contact</h3></STRONG>
-       | <a href='contact.php'>My Contacts</a> | <a href='add.php'>Add Contact</a> |
-       
-      </center>
-         
-        <br />
-      <hr>
-      <br/>
- 
-  <?php
-      $con = mysql_connect("localhost","root","");
-           mysql_select_db("contacts", $con);
-
-      
-           
-         
-      echo "<table border='1' class='table table-responsive table-hover' >";
-      $e = $_SESSION['login_user'];
-      $locate =mysql_query("select * from info where user='$e'");
-    
-      echo "<tr>";
-      echo "<thread>";
-      echo "<th>Name</th>";
-      echo "<th>Phone Number</th>";
-      echo "<th>Phone Type</th>";
-      echo "<th>Address</th>";
-      echo "<th>Birthday</th>";
-       echo "<th>Company</th>";
-       echo "<th>Note</th>";
-       echo "<th colspan='2'><center>Action</th>";
-       echo"</thread>";
-      echo "</tr>";
-
-      while($rows=mysql_fetch_array($locate)){
-        echo "<tr>";
-        
-        echo "<td>".$rows['name']."</td>";
-        echo "<td>".$rows['phone']."</td>";
-        echo "<td>".$rows['phonetype']."</td>";
-        echo "<td>".$rows['address']."</td>";
-        echo "<td>".$rows['birthday']."</td>";
-        echo "<td>".$rows['company']."</td>";
-        echo "<td>".$rows['note']."</td>";
-        //echo "<td><a class='btn btn-primary btn-xs' href='contact.php'title='Edit'><span class='glyphicon glyphicon-edit'></span><span class='hidden-xs'> Edit</span></a></td>";
-        echo "<td title=Edit><a href=\"editform.php?id=$rows[info_id]\"><center>Edit</a></td>";
-        echo "<td title=Remove><a href='deletecontact.php?id=".$rows['info_id']."'><center>Remove</a></td>";
-       
-
-         
-        }
-        echo "</tr>";
-      
-      echo "</table>";
-      
-        
-    ?>
-
       </nav>
-    </div>
-    </div>
+      <div class="row">
+      <div class="col-md-3">
+      </div>
+
+      <div class="col-sm-12 col-md-6">
+      <!-- <input type="text" class="form-control" name="user" value="<?php echo $_SESSION['login_user'];?>"readonly></td>
+      </br>
+      <input type="text" class="form-control" value='<?php echo $login_fname .' '. $login_lname;?>'name="name" readonly></td>
+      </br> -->
+      <center><h1>Customer Support</h1></center>
+      <input list="feedbacktype" class="form-control status-box" name="feedbacktype" placeholder="Choose Feedback Type"required><br>
+
+  <datalist id="feedbacktype">
+    <option value="Feedback"></option>
+    <option value="Bug Report"></option>
+    <option value="Ask Question"></option>
    
+  </datalist>
+      <form method="post" action="#">
+        <div class="form-group">
+          <textarea class="form-control status-box" rows="2" name="textbox" placeholder="Type Your Message Here"required></textarea>
+        </div>
+      
+      <div class="button-group pull-right">
+        <p class="counter">140</p>
+        <button type="submit" id="post" name="postbtn" class="btn btn-primary">Send</button>
+       
+      </div>
+      </form>
+
+    
+    </div>
+      </div>
+
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/app.js"></script>
+    
   </body>
 </html> 

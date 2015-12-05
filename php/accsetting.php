@@ -14,6 +14,7 @@
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/bootstrap.css" rel="stylesheet">
     <link href='../css/style.css' rel='stylesheet'>
+    
    <!-- <link href="../css/jumbotron-narrow.css" rel="stylesheet">-->
 
     
@@ -44,7 +45,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <!-- <a class="navbar-brand icon-menu" href="#">Chat</a> -->
+      <!-- <!-- <a class="navbar-brand icon-menu" href="#">Chat</a> --> 
       <a class="navbar-brand" href="main.php" style="margin-left:0px">Ez Home</a>
 
     </div>
@@ -52,7 +53,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="index-navbar" style="background-color:pink">
       <ul class="nav navbar-nav">
-        <!-- <li ><a href="main.php">Features </a></li> -->
+        <!-- <!-- <li ><a href="main.php">Features </a></li> --> 
         <li class="active"><a href="contact.php">Contact <span class="sr-only">(current)</span></a></li>
         <!-- <?php echo $_SESSION['login_user'];?> -->
       </ul>
@@ -73,79 +74,84 @@
       </div>
       </div>
       <center>
-      <STRONG><h3>Add New Contact</h3></STRONG>
+<?php
+    $con = mysql_connect("localhost","root","");
+           mysql_select_db("contacts", $con);
+
+    $e = $_SESSION['login_user'];       
+    $query = "SELECT * FROM users where email='$e'";
+  //initializing result as a query
+  $result = mysql_query($query);
+  //display records from records table 
+  while($rows = mysql_fetch_array($result))
+  { 
+          $fname=$rows['fname'];
+          $lname=$rows['lname'];
+          $password=$rows['password'];
+        
+   
+    
+  } 
+        
+  
+    ?>
+      <STRONG><h3>Account Setting</h3></STRONG>
+     
+       
       </center>
+         <?php
+    $con = mysql_connect("localhost","root","");
+           mysql_select_db("contacts", $con);
+    if(isset($_POST['edit'])){
+        $e=$_GET['id'];
+          
+            $fname=$_POST['fname'];
+                $lname=$_POST['lname'];
+                $password=$_POST['password'];
+                $cpassword=$_POST['cpassword'];
+          if($password==$cpassword){
+        //updating database from your table
+        $sql="UPDATE users set fname='$fname',lname='$lname',password='$password'
+        where email='".$e."'";
+        mysql_query($sql) or die('Error');
+        header("Location: main.php");
+
+          }else{
+            echo "<color:red>";
+            $error="Please double check your password!";
+          
+          }
+               
+        
+      }
+      ?>
+        
       <hr>
-      <br/>
+    
    <div class="container">
     <table cellspacing="6" >
-    <?php
+    <form class="form-signin" method="POST" action="accsetting.php?id=<?php echo $e?>">
       
-           if (isset($_POST['add'])) { 
+     <tr>Email: 
+       <input type="text" class="form-control" name="user" value="<?php echo $_SESSION['login_user'];?>"readonly></tr>
+      </br>
+      <tr>First Name: 
+      <input type="text" class="form-control" value='<?php echo $fname?>'name="fname" required autofocus></tr>
+      </br>
+      <tr>Last Name: 
+      <input type="text" class="form-control" value='<?php echo $lname?>'name="lname"required></tr>
+      </br>
+      <tr>Password: 
+       <input type="password" class="form-control" value='<?php echo $password?>' name="password"required></tr>
+      </br>
+      <tr>Confirm Password: 
+       <input type="password" class="form-control" value='<?php echo $password?>' name="cpassword"required><?php if(isset($error)){ echo $error;}?></tr>
+      </br>
 
-          $con = mysql_connect("localhost","root","");
-                mysql_select_db("contacts", $con);
-                
-          $user=$_POST['user'];
-          $name=$_POST['name'];
-          $phone=$_POST['phone'];
-          $phonetype=$_POST['phonetype'];
-          $grouptype=$_POST['grouptype'];
-          $address=$_POST['address'];
-          $birthday=$_POST['birthday'];
-          $company=$_POST['company'];
-          $note=$_POST['note'];
-
-          $query ="insert into info(user,name,phone,phonetype,grouptype,address,birthday,company,note)values
-          ('$user','$name','$phone','$phonetype','$grouptype','$address','$birthday','$company','$note')";
-          if(mysql_query($query)){
-              echo "<font color='red'> Added Successfuly </font> | <a href='contact.php'>Contact List</a>";
-          }
-          else{
-              echo "Fail";
-          }
-            
-      }
-    ?>
-    <form class="form-signin" method="POST" action="insertcontact.php">
       
-       <input type="text" class="form-control" name="user" value="<?php echo $_SESSION['login_user'];?>"readonly></td>
-      </br>
-      <input type="text" class="form-control" name="name" placeholder="Name"required autofocus></td>
-      </br>
-      <input type="text" class="form-control" name="phone"placeholder="Phone Number"required></td>
-      </br>
-
-      <input list="phonetype" class="form-control" name="phonetype" placeholder="Choose Phone Type or Type Here"required><br>
-
-  <datalist id="phonetype">
-    <option value="Mobile">
-    <option value="Home">
-    <option value="Work">
-    <option value="School">
-    <option value="Private">
-
-  </datalist>
-
-      <input list="grouptype" class="form-control" name="grouptype" placeholder="Choose Group Type"required><br>
-
-  <datalist id="grouptype">
-    <option value="Favourite">
-    <option value="Family">
-    <option value="Friends">
-    <option value="Default">
-  </datalist>
-  
-      <input type="text" class="form-control" name="address"placeholder="Address"required></td>
-      </br>
-      <input type="date" class="form-control" name="birthday"placeholder="Birthday"required></td>
-      </br>
-       <input type="text" class="form-control" name="company"placeholder="Company Detail"></td>
-      </br>
-       <input type="text" class="form-control" name="note"placeholder="Additional Note"></td>
-      </br>
-
-      <button name="add" type="submit"class="btn btn-lg btn-primary btn-block" >Add</button></td>
+      
+      <tr>
+      <button name="edit" type="submit" class="btn btn-lg btn-primary btn-block" >Update</button></tr>
     
 
     </form>

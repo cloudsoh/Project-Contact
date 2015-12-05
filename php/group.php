@@ -1,11 +1,5 @@
 <?php 
   include("session.php");
-  $db1 = new mysqli("localhost", "root", "", "contacts");
-  if(isset($_GET['delete'])){
-      $deleteuser=$_GET['delete'];
-      $deletequery="delete from info where info_id = $deleteuser";
-      $delete_result=$db1->query($deletequery);
-  }
 ?>
 <html>
   <head>
@@ -57,7 +51,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="index-navbar" style="background-color:pink">
       <ul class="nav navbar-nav">
-        <!-- <!-- <li class="active"><a href="#">Features <span class="sr-only">(current)</span></a></li> --> 
+        <!-- <li class="active"><a href="#">Features <span class="sr-only">(current)</span></a></li> -->
          <li ><a href="contact.php">Contacts</a></li>
         <!-- <?php echo $_SESSION['login_user'];?> -->
       </ul>
@@ -78,14 +72,44 @@
       </div>
       </div>
       </nav>
-      <div class="col-md-2">
-      </div>
-      <div class="btn-group-vertical col-sm-12 col-md-8" role="group" aria-label="...">
+      <div class="btn-group-vertical" role="group" aria-label="...">
   <?php
       $con = mysql_connect("localhost","root","");
            mysql_select_db("contacts", $con);
       $e = $_SESSION['login_user'];
+      $Astatus = "Favourite";
+      $Bstatus = "Friends";
+      $Cstatus = "Family";
+      $favourite = mysql_query("select * from info where grouptype='$Astatus' ");
+      $friends = mysql_query("select * from info where grouptype='$Bstatus' ");
+      $family = mysql_query("select * from info where grouptype='$Cstatus' ");
       $locate =mysql_query("select * from info where user='$e'");
+?>
+      <div class="btn-group" role="group"> 
+      <button id="btnGroupVerticalDrop1" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Favourite
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1">
+<?php
+      while($rows=mysql_fetch_array($favourite)){?>
+      
+        <button id="btnGroupVerticalDrop1" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+       <?php echo $rows['name'];?>
+      </button>
+      </ul>
+      <?php
+      }
+      ?>
+      </div>
+
+
+
+</div>
+
+
+     
+
+<?php
       while($rows=mysql_fetch_array($locate)){?>
       
       <div class="btn-group" role="group"> 
@@ -93,14 +117,14 @@
        <?php echo $rows['name'];?>
       </button>
         <ul class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1">
-         <!--  <li>
+          <li>
             <a href="#">Send Message</a>
-          </li> -->
+          </li>
           <li style="cursor:pointer;">
             <a data-toggle="modal" data-target="#exampleModal" data-name="<?php echo $rows['name'];?>" data-number="<?php echo $rows['phone'];?>" data-address="<?php echo $rows['address'];?>" data-birthday="<?php echo $rows['birthday'];?>" data-company="<?php echo $rows['company'];?>">View Details</a>
           </li>
           <li>
-            <a href="main.php?delete=<?php echo $rows['info_id'];?>">Delete Contact</a>
+            <a href="#">Delete Contact</a>
           </li>
         </ul>
       </div>
@@ -145,8 +169,7 @@
       </div>
     </div>
   </div>
-</div><div class="col-md-2">
-      </div>
+</div>
     </div>
    
 
